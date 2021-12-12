@@ -7,3 +7,26 @@
 .article > div > p{
     height: 6rem;
 }
+
+.filterbar {
+    margin-top: 2rem;
+    margin-left: 6%;
+}
+
+.search{
+    width:25%;   
+    
+}
+
+.inline-form{
+    display:inline;
+}
+.select{
+    width:25%;
+    margin-bottom:1rem;
+}
+
+.filter{
+    margin-top: 2rem;
+}
+

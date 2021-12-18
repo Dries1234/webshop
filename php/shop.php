@@ -18,39 +18,26 @@ session_start()
 </head>
 
 <body>
-<?php
-  $category = NULL;
-  $search = NULL;
-  if(isset($_POST["submit"]))
-  {
-    if(isset($_POST["category"])){
-      if($_POST["category"] != "no"){
-        $category = htmlspecialchars($_POST["category"]);
-      }
-    }
-    if(isset($_POST["search"])){
-      $search = htmlspecialchars($_POST["search"]);
-    }
-  }
+
+  <?php
   $page = "shop";
   include_once("imports/navbar.php");
-  include_once("imports/database.php");
+  include_once(__DIR__ . "/imports/database.php");
   $datab = new Database();
   $datab->connect();
-  $result = $datab->query("SELECT * FROM categories");
-
   ?>
 
   <div class="container filterbar">
 
-    <form method="post" action="./shop.php">
+    <form onsubmit="return getProducts()">
       <div class="row">
         <div class="form-group">
 
-          <select name="category" class="form-select select col-md-2">
-            <option value="no" selected>Select a category</option>
+          <select name="category" id="category" class="form-select select col-md-2">
+            <option value="nothing" selected>Select a category</option>
 
             <?php
+            $result = $datab->query("SELECT * FROM categories");
             while ($row = $result->fetch_assoc()) {
               $name = htmlspecialchars($row["name"]);
             ?>
@@ -61,7 +48,7 @@ session_start()
             ?>
           </select>
           <div class="col-md-2 search">
-            <input type="text" name="search" class="form-control" placeholder="Search term">
+            <input type="text" name="search" id="search" class="form-control" placeholder="Search term">
           </div>
         </div>
       </div>
@@ -70,80 +57,9 @@ session_start()
  
   </form>
   </div>
-  <?php
-  $query;
-  $selected;
-  $products;
-  if($category != NULL && $search == NULL)
-  {
-    $datab->prepare("SELECT * FROM categoryID WHERE name=?");
-    $datab->bind_param("s" , [$category]);
-    $datab->execute();
-    $categories = $datab->get_result();
-    if($result)
-    {
-      $entries = mysqli_fetch_assoc($result);
+  <div class="container-fluid" id="articles">
 
-      $query = "SELECT * FROM products WHERE categoryID=" . $entries["categoryID"];
-    }
-    $selected = $datab->query($query);
-  }
-
-  else if($search != NULL && $category == NULL){
-    $datab->prepare("SELECT * FROM products WHERE name=?");
-    $datab->bind_param("s" , [$search]);
-    $datab->execute();
-    $selected = $datab->get_result();
-  }
-  else if($search!=NULL && $category != NULL){
-    $datab->prepare("SELECT * FROM categoryID WHERE name=?");
-    $datab->bind_param("s" , $category);
-    $datab->execute();
-    $categories = $datab->get_result();
-    if($result)
-    {
-      $entries = mysqli_fetch_assoc($result);
-
-      $query = "SELECT * FROM products WHERE categoryID=? AND name=?";
-      $datab->prepare($query);
-      $datab->bind_param("ss", [$entries["categoryID"], $search]);
-    }
-    $datab->execute();
-
-    $selected = $datab->get_result();
-  }
-  else{
-    $datab->prepare("SELECT * FROM products");
-    $datab->execute();
-    $selected = $datab->get_result();
-  }
-
-  ?>
-
-  <div class="container-fluid">
-    <?php
-    $i = 0;
-    while ($row = $selected->fetch_assoc()) {
-      if ($i == 0) {
-    ?>
-        <div class="row">
-        <?php
-      }
-      $title = htmlspecialchars($row["name"]);
-      $description = htmlspecialchars($row["description"]);
-      $picture = "../" . htmlspecialchars($row["picture"]);
-      include("imports/productcard.php");
-      $i++;
-      if ($i == 3) {
-        ?>
-        </div>
-    <?php
-        $i = 0;
-      }
-    }
-    ?>
   </div>
-
 </body>
 
 </html>

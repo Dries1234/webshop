@@ -42,7 +42,7 @@ session_start()
               $name = htmlspecialchars($row["name"]);
             ?>
 
-              <option class="dropdown-item" "<?php echo ($name); ?>" href="#"><?php echo ($name); ?></option>
+              <option class="dropdown-item" href="#"><?php echo ($name); ?></option>
             <?php
             }
             ?>

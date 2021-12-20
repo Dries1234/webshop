@@ -70,6 +70,7 @@ if ($category != NULL && $search == NULL) {
         $title = htmlspecialchars($row["name"]);
         $description = htmlspecialchars($row["description"]);
         $picture = "../" . htmlspecialchars($row["picture"]);
+        $id = htmlspecialchars($row["productID"]);
         include("imports/productcard.php");
         $i++;
         if ($i == 3) {

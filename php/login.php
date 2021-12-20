@@ -24,6 +24,7 @@
                     $_SESSION["name"] = $entry["firstName"];
                     $_SESSION["email"] = $entry["email"];
                     $_SESSION["admin"] = $entry["admin"];
+                    $_SESSION["cart"] = array();
 
                     header("Location: index.php");
                 }

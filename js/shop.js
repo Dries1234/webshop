@@ -32,6 +32,7 @@ $(document).on("productsLoaded", function (e1) {
         id: id,
       },
     });
+    alert("Added a product to your cart!");
   });
 });
 

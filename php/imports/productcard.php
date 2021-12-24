@@ -3,20 +3,7 @@
     <div class="card-body">
       <h5 class="card-title"><?php echo($title); ?></h5>
       <p class="card-text">Price: €<?php echo($price)?></p>
-      <?php
-      if($page=="shop")
-      {
-      ?>
       <p class="card-text"><?php echo($description); ?></p>
       <button class="btn btn-primary add-cart">Add to cart</button>
-      <?php
-      }
-      else if($page=="shoppingcart"){
-        ?>
-        <p class="card-text">Amount: <?php echo($amount)?></p>
-        <button class="btn btn-danger remove-cart">Remove from cart</button>
-      <?php
-      }
-      ?>
     </div>
   </div>

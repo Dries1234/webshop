@@ -2,6 +2,7 @@
     session_start();
     include_once("imports/database.php");
     $registered = true;
+    $correctpass = true;
     if(isset($_POST["submit"])){
         $datab = new Database();
         try{
@@ -14,11 +15,11 @@
             $datab->bind_param("s", [$email]);
             $datab->execute();
             $result = $datab->get_result();
-
+            $entry = mysqli_fetch_assoc($result);
            
-            if($result){
+            if($entry){
                 $registered = true;
-                $entry = mysqli_fetch_assoc($result);
+
                 $hashed_pw = $entry["hashedPW"];
                 if(password_verify($pass, $hashed_pw)){
                     $_SESSION["name"] = $entry["firstName"];
@@ -27,6 +28,9 @@
                     $_SESSION["cart"] = array();
 
                     header("Location: index.php");
+                }
+                else{
+                    $correctpass = false;
                 }
             }
             else{
@@ -78,8 +82,15 @@
   <?php
     if(!$registered){
         ?>
-        <div class="alert alert-danger text-center shadow-lg">
+        <div class="alert alert-warning text-center shadow-lg">
             <strong>No user with that email found! <a href="register.php">Register here</a></strong>
+        </div>
+        <?php
+    }
+    else if(!$correctpass){
+        ?>
+        <div class="alert alert-danger text-center shadow-lg">
+            <strong>Incorrect password</strong>
         </div>
         <?php
     }

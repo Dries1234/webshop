@@ -12,9 +12,21 @@
         <li class="nav-item">
         <a class="nav-link <?php if($page=="shop"){echo "active"; ?> " <?php echo "aria-current=\"page\"";}else{?> " <?php }?> href="shop.php">Shop</a>
         </li>
+        <?php
+        
+          if(isset($_SESSION["admin"]) && $_SESSION["admin"] == 1){
+              ?>
+              <li class="nav-item">
+                <a class="nav-link <?php if($page=="admin"){ echo "active"; ?>" <?php echo "aria-current=\"page\"";} else{?> " <?php } ?> href="admin.php" ?>Admin</a>
+              </li>
+          <?php
+          }
+        ?>
+
 
       </ul>
       <?php
+
       if(!isset($_SESSION["email"])){
       ?>
       <ul class="navbar-nav ms-auto">
@@ -29,6 +41,7 @@
       }
       else {
         ?>
+        
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
             <a class="nav-link" href="shoppingcart.php"><image src="../assets/cart.svg" alt="shopping cart"/></a>

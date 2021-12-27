@@ -61,7 +61,7 @@
                 //check if unique
                 $emails = $datab->query("SELECT * FROM users WHERE email=\"" . $email . "\"");
 
-                if($emails){
+                if($emails->num_rows > 0){
                     $registered = true;
                 }
                 else{

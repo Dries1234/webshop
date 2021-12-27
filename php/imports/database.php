@@ -5,10 +5,16 @@
         private $database = "webshop";
         private $username = "Webuser";
         private $password = "Lab2021";
-        private mysqli $db;
+        private ?mysqli $db = NULL;
         private mysqli_stmt $stmt;
     
-
+        
+        function __destruct()
+        {
+            if($this->db){
+                mysqli_close($this->db);
+            }
+        }
         function connect(){
             try {
                 $this->db = mysqli_connect($this->servername,$this->username,$this->password, $this->database);
@@ -41,6 +47,9 @@
 
         function insert_id(){
             return mysqli_insert_id($this->db);
+        }
+        function error(){
+            return $this->db->error;
         }
     }
 ?>

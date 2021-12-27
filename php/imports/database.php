@@ -38,5 +38,9 @@
         function get_result(){
             return $this->stmt->get_result();
         }
+
+        function insert_id(){
+            return mysqli_insert_id($this->db);
+        }
     }
 ?>

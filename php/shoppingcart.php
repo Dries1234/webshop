@@ -105,7 +105,7 @@ if (!isset($_SESSION["cart"])) {
 
             <div class="row">
               <div class="col"></div>
-              <button class="col btn btn-primary btn-lg" type="submit">Checkout!</button>
+              <button class="col btn btn-primary btn-lg" id="checkout" type="submit">Checkout!</button>
               <div class="col"></div>
             </div>
           </div>
@@ -121,3 +121,4 @@ if (!isset($_SESSION["cart"])) {
 </body>
 
 </html>
+<script src="../js/bootstrap.bundle.min.js"></script>

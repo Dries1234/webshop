@@ -131,7 +131,7 @@ session_start();
               </div>
             </div>
           </li>
-          <div class="modal fade" id="<?php echo $user['firstName'] ?>modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="<?php echo $user['firstName'] ?>modal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">

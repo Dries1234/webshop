@@ -1,4 +1,5 @@
 <?php
+  include_once("imports/handler.php");
   session_start();
 ?>
 
@@ -18,6 +19,9 @@
   $page= "home";
   include_once("imports/navbar.php");
 ?>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <h1 class="text-center">For all your anti-covid-measures needs!</h1>
+</div>
 </body>
 </html>
 <script src="../js/bootstrap.bundle.min.js"></script>

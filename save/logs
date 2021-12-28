@@ -1,0 +1,2 @@
+[ Tue Dec 28 13:01:01 UTC 2021 ] Division by zero with error code: 0 in file: /var/www/html/webshop/php/index.php on line: 19
+[ Tue Dec 28 13:18:25 UTC 2021 ] random error with error code: 1024 in file: /var/www/html/webshop/php/index.php on line: 19

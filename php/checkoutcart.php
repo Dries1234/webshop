@@ -11,15 +11,23 @@
       foreach ($_SESSION["cart"] as $id => $amount) {
         while ($product = $products->fetch_assoc()) {
           if ($id == $product["productID"]) {
-            $price = htmlspecialchars($product["price"]);
-            $sum += $price * $amount;
+            if($product["stock"] < $amount)
+            {
+              http_response_code("409");
+              echo json_encode(['product' => $product["name"]]);
+              exit();
+            }
+            else{
+              $price = htmlspecialchars($product["price"]);
+              $sum += $price * $amount;
+            }
           }
         }
       }
     }
     $db->prepare("INSERT INTO orders(user,orderDate,price,complete) VALUES(?,?,?,?)");
     $email = htmlspecialchars($_SESSION["email"]);
-    $orderDate = date("Y-m-d");
+    $orderDate = date("Y-m-d H:i:s");
     $db->bind_param("ssi", [$email,$orderDate,$sum, (int)true]);
     $db->execute();
     $orderId = $db->insert_id();
@@ -28,6 +36,7 @@
         $db->bind_param("iii", [$orderId, $id,$amount]);
         $db->execute();
     }
+    http_response_code("200");
     $_SESSION["cart"] = array();
 
 ?>

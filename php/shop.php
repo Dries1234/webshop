@@ -22,7 +22,7 @@ session_start()
   <?php
   $page = "shop";
   include_once("imports/navbar.php");
-  include_once(__DIR__ . "/imports/database.php");
+  include_once("imports/database.php");
   $datab = new Database();
   $datab->connect();
   ?>
@@ -39,11 +39,15 @@ session_start()
             <?php
             $result = $datab->query("SELECT * FROM categories");
             while ($row = $result->fetch_assoc()) {
-              $name = htmlspecialchars($row["name"]);
+              if($row["active"])
+              {
+                $name = htmlspecialchars($row["name"]);
+              
             ?>
 
               <option class="dropdown-item" ><?php echo ($name); ?></option>
             <?php
+              }
             }
             ?>
           </select>

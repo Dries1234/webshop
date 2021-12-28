@@ -1,5 +1,5 @@
 <?php
-    include_once("imports/database.php");
+    include_once("../imports/database.php");
     $email = htmlspecialchars($_POST["email"]);
     $db = new Database();
     $db->connect();

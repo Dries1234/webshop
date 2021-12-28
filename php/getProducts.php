@@ -59,11 +59,12 @@ if ($category != NULL && $search == NULL) {
 ?>
 
 
-    <?php
-    $i = 0;
-    while ($row = $selected->fetch_assoc()) {
+<?php
+$i = 0;
+while ($row = $selected->fetch_assoc()) {
+    if ($row["active"]) {
         if ($i == 0) {
-    ?>
+?>
             <div class="row">
             <?php
         }
@@ -82,9 +83,10 @@ if ($category != NULL && $search == NULL) {
             $i = 0;
         }
     }
-    if($i != 0){
-        ?>
-        </div>
-        <?php
-    }
+}
+if ($i != 0) {
     ?>
+    </div>
+<?php
+}
+?>

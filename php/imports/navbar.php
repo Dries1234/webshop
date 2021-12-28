@@ -7,17 +7,17 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
        <li class="nav-item">
-          <a class="nav-link <?php if($page=="home"){echo "active"; ?> " <?php echo "aria-current=\"page\"";}else{?> " <?php }?> href="index.php">Home</a>
+          <a class="nav-link <?php if($page=="home"){echo "active"; ?> " <?php echo "aria-current=\"page\"";}else{?> " <?php }?> href="<?php echo str_replace('/var/www/html','',__DIR__) ?>/../index.php">Home</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link <?php if($page=="shop"){echo "active"; ?> " <?php echo "aria-current=\"page\"";}else{?> " <?php }?> href="shop.php">Shop</a>
+        <a class="nav-link <?php if($page=="shop"){echo "active"; ?> " <?php echo "aria-current=\"page\"";}else{?> " <?php }?> href="<?php echo str_replace('/var/www/html','',__DIR__) ?>/../shop.php">Shop</a>
         </li>
         <?php
         
           if(isset($_SESSION["admin"]) && $_SESSION["admin"] == 1){
               ?>
               <li class="nav-item">
-                <a class="nav-link <?php if($page=="admin"){ echo "active"; ?>" <?php echo "aria-current=\"page\"";} else{?> " <?php } ?> href="admin.php" ?>Admin</a>
+                <a class="nav-link <?php if($page=="admin"){ echo "active"; ?>" <?php echo "aria-current=\"page\"";} else{?> " <?php } ?> href="<?php echo str_replace('/var/www/html','',__DIR__) ?>/../admin.php" ?>Admin</a>
               </li>
           <?php
           }
@@ -31,10 +31,10 @@
       ?>
       <ul class="navbar-nav ms-auto">
         <li class="nav-item register_login">
-          <button class="btn btn-secondary nav-link" onclick="location='register.php'">Register</button>
+          <button class="btn btn-secondary nav-link" onclick="location='<?php echo str_replace('/var/www/html','',__DIR__) ?>/../register.php'">Register</button>
         </li>
         <li class="nav-item register_login">
-          <button class="btn btn-primary nav-link" onclick="location='login.php'">Login</button>
+          <button class="btn btn-primary nav-link" onclick="location='<?php echo str_replace('/var/www/html','',__DIR__) ?>/../login.php'">Login</button>
         </li>
       </ul>
       <?php
@@ -44,11 +44,11 @@
         
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="shoppingcart.php"><image src="../assets/cart.svg" alt="shopping cart"/></a>
+            <a class="nav-link" href="shoppingcart.php"><image src="<?php echo str_replace("/var/www/html","",__DIR__) ?>/../../assets/cart.svg" alt="shopping cart"/></a>
           </li>
 
           <li class="nav-item">
-            <button class="btn btn-secondary nav-link" onclick="location='logout.php'">Logout</button>
+            <button class="btn btn-secondary nav-link" onclick="location='<?php echo str_replace('/var/www/html','',__DIR__) ?>/../logout.php'">Logout</button>
           </li>
         </ul>
         <?php

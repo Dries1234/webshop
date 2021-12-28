@@ -22,7 +22,70 @@ session_start();
   <?php
   $page = "admin";
   include_once("../imports/navbar.php");
+  include_once("../imports/database.php");
+  $db = new Database();
+  $db->connect();
+  $db->prepare("SELECT * FROM categories");
+  $db->execute();
+  $result = $db->get_result();
+
   ?>
+  <button class="btn btn-success m-3" data-bs-toggle="modal" data-bs-target="#modaladd">Add product</button>
+
+  <div class="modal fade" id="modaladd" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="./addproduct.php" method="post">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="name">Category</label>
+              <select class="form-select" name="category">
+                <?php
+                while ($row = $result->fetch_assoc()) {
+                  if ($row["active"]) {
+                ?>
+                    <option class="dropdown-item" selected><?php echo $row["name"] ?></option>
+                <?php
+                  }
+                }
+                ?>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" name="name" placeholder="new name">
+            </div>
+            <div class="form-group">
+              <label for="name">Stock</label>
+              <input type="text" class="form-control" name="stock" placeholder="new stock">
+            </div>
+            <div class="form-group">
+              <label for="name">Price</label>
+              <input type="text" class="form-control" name="price" placeholder="new price">
+            </div>
+            <div class="form-group">
+              <label for="name">picture</label>
+              <input type="text" class="form-control" name="picture" placeholder="new picture">
+            </div>
+            <div class="form-group">
+              <label for="name">description</label>
+              <input type="text" class="form-control" name="description" placeholder="new description">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add Product</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
   <div class="container-fluid mt-3">
     <li class="list-group-item">
       <div class="row">
@@ -47,9 +110,7 @@ session_start();
       </div>
   </div>
   <?php
-  include_once("../imports/database.php");
-  $db = new Database();
-  $db->connect();
+
   $db->prepare("SELECT * FROM products");
   $db->execute();
   $products = $db->get_result();

@@ -12,7 +12,7 @@ $(() => {
         $(document).attr("location", "../php/index.php");
       },
       statusCode: {
-        409: function (responseObject) {
+        418: function (responseObject) {
             console.log(responseObject);
           alert(`${responseObject.responseJSON.product} does not have enough stock!`);
         },

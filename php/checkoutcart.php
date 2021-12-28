@@ -13,7 +13,7 @@
           if ($id == $product["productID"]) {
             if($product["stock"] < $amount)
             {
-              http_response_code("409");
+              http_response_code("418");
               echo json_encode(['product' => $product["name"]]);
               exit();
             }

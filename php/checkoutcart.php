@@ -21,7 +21,7 @@
             else{
               $price = htmlspecialchars($product["price"]);
               $sum += $price * $amount;
-              $db->prepare("UPDATE product SET stock=? WHERE productID=?");
+              $db->prepare("UPDATE products SET stock=? WHERE productID=?");
               $db->bind_param("ii", [$product["stock"] - $amount, $product["productID"]]);
               $db->execute();
             }
@@ -32,7 +32,7 @@
     $db->prepare("INSERT INTO orders(user,orderDate,price,complete) VALUES(?,?,?,?)");
     $email = htmlspecialchars($_SESSION["email"]);
     $orderDate = date("Y-m-d H:i:s");
-    $db->bind_param("ssi", [$email,$orderDate,$sum, (int)true]);
+    $db->bind_param("ssii", [$email,$orderDate,$sum, (int)true]);
     $db->execute();
     $orderId = $db->insert_id();
     foreach ($_SESSION["cart"] as $id => $amount) {

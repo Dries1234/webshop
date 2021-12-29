@@ -1,4 +1,5 @@
 <?php
+include_once("imports/handler.php");
 session_start();
 
 if (!isset($_SESSION["email"])) {
@@ -26,7 +27,21 @@ if (!isset($_SESSION["email"])) {
 
     $db = new Database();
     $db->connect();
+    $db->prepare("SELECT * FROM users WHERE email=?");
+    $db->bind_param("s", [$_SESSION["email"]]);
+    $db->execute();
+    $result = $db->get_result();
+    $profile = $result->fetch_assoc();
     ?>
+<div class="container shadow-lg p-5 bg-white rounded mt-3">
+    <h1 class="text-center display-4">Profile</h1>
+    <h3>Name: <?php echo(htmlspecialchars($profile["firstName"]) . " " . htmlspecialchars($profile["lastName"]))?></h2>
+    <h3>Email: <?php echo(htmlspecialchars($profile["email"]))?></h2>
+    <h3>Phone: <?php echo(htmlspecialchars($profile["phone"]))?></h2>
+    <h3>Billing: <?php echo(htmlspecialchars($profile["billingAddress"]))?></h2>
+    <h3>Day of Birth: <?php echo(htmlspecialchars($profile["birthDate"]))?></h2>
+    <h3>Address: <?php echo(htmlspecialchars($profile["Address"]))?></h2>
+</div>
 </body>
 
 </html>

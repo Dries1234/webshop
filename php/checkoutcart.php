@@ -21,6 +21,9 @@
             else{
               $price = htmlspecialchars($product["price"]);
               $sum += $price * $amount;
+              $db->prepare("UPDATE product SET stock=? WHERE productID=?");
+              $db->bind_param("ii", [$product["stock"] - $amount, $product["productID"]]);
+              $db->execute();
             }
           }
         }

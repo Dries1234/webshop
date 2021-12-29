@@ -12,6 +12,7 @@
     <link href = "../css/reset.css" rel = "stylesheet">
     <link href = "../css/bootstrap.min.css" rel = "stylesheet">
     <link href = "../css/nav.css" rel = "stylesheet">
+    <link href = "../css/index.css" rel = "stylesheet">
     <title>Home - Covitesse</title>
 </head>
 <body>
@@ -19,8 +20,9 @@
   $page= "home";
   include_once("imports/navbar.php");
 ?>
-<div class="container d-flex justify-content-center align-items-center vh-100">
-  <h1 class="text-center">For all your anti-covid-measures needs!</h1>
+<div class="center container-fluid d-flex justify-content-center align-items-center flex-column h-100">
+  <h1 class="text-center">Covitesse</h1>
+  <h2 class="text-center">For all your anti-covid-measures needs!</h2>
 </div>
 </body>
 </html>

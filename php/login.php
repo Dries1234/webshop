@@ -1,4 +1,5 @@
 <?php
+    include_once("imports/handler.php");
     session_start();
     include_once("imports/database.php");
     $registered = true;

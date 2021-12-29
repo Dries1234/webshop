@@ -1,4 +1,5 @@
 <?php
+    include_once("../imports/handler.php");
     $email = htmlspecialchars($_POST["email"]);
     include_once("../imports/database.php");
     $db = new Database();

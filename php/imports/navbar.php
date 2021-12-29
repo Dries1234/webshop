@@ -1,3 +1,7 @@
+<?php
+include_once("handler.php");
+?>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="<?php echo str_replace('/var/www/html','',__DIR__) ?>/../index.php">Covitesse</a>

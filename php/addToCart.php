@@ -1,4 +1,5 @@
 <?php
+include_once("imports/handler.php");
 session_start();
 if(isset($_SESSION["cart"][$_POST["id"]])){
     $_SESSION["cart"][$_POST["id"]]++;

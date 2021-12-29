@@ -1,4 +1,5 @@
 <?php
+include_once("imports/handler.php");
 session_start();
 if (!isset($_SESSION["cart"])) {
   header("Location: index.php");

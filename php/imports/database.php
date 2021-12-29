@@ -1,4 +1,5 @@
 <?php
+    include_once("handler.php");
 
     class Database {
         private $servername = "database"; //docker sees database as the correct local url

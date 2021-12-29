@@ -1,4 +1,5 @@
 <?php
+include_once("imports/handler.php");
 $category = NULL;
 $search = NULL;
 if (isset($_GET["category"])) {

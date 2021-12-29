@@ -1,4 +1,5 @@
 <?php
+    include_once("../imports/handler.php");
     include_once("../imports/database.php");
     $firstName = htmlspecialchars($_POST["name"]);
     $lastName = htmlspecialchars($_POST["lastname"]);

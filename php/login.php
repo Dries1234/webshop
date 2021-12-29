@@ -1,6 +1,9 @@
 <?php
     include_once("imports/handler.php");
     session_start();
+    if(isset($_SESSION["email"])){
+        header("Location: index.php");
+      }
     include_once("imports/database.php");
     $registered = true;
     $correctpass = true;
